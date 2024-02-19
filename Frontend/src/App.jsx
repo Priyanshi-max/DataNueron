@@ -15,7 +15,7 @@ function App() {
     const response = await fetch("http://localhost:5000/users")
     const data = await response.json();
     // console.log(data)
-
+   setUsers(data)
   } 
   useEffect(()=>{
     fetchData();
@@ -33,7 +33,15 @@ function App() {
                 className="flex align-items-center justify-content-center"
                 size={20}
               >
-                Panel 1
+                {
+                  users && users.map(user=>(
+                    <ul key={user.id}>
+                      <li>{user.name}</li>
+                      <li>{user.email}</li>
+                      <li>{user.phone}</li>
+                    </ul>
+                  ))
+                }
               </SplitterPanel>
               <SplitterPanel
                 className="flex align-items-center justify-content-center"
